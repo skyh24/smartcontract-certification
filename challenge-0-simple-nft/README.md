@@ -110,11 +110,11 @@ yarn deploy
 
 🛰 Ready to deploy to a public testnet?!?
 
-> Change the `defaultNetwork` in `packages/hardhat/hardhat.config.js` to `rinkeby`
+> Change the `defaultNetwork` in `packages/hardhat/hardhat.config.js` to `goerli`
 
-![networkSelect](https://user-images.githubusercontent.com/12072395/146871168-29b3d87a-7d25-4972-9b3c-0ec8c979171b.PNG)
+![networkSelect](https://user-images.githubusercontent.com/12072395/187536000-52a97be7-719e-4e3f-93cf-948abed2c489.PNG)
 
-🔐 Generate a **deployer address** with `yarn run generate`
+🔐 Generate a **deployer address** with `yarn generate`
 
 ![nft7](https://user-images.githubusercontent.com/526558/124387064-7d0a0f00-dcb3-11eb-9d0c-195f93547fb9.png)
 
@@ -132,19 +132,19 @@ yarn deploy
 yarn deploy
 ```
 
-> 💬 Hint: You can set the `defaultNetwork` in `hardhat.config.js` to `Rinkeby` OR you can `yarn deploy --network rinkeby`. 
+> 💬 Hint: You can set the `defaultNetwork` in `hardhat.config.js` to `goerli` OR you can `yarn deploy --network goerli`. 
 
 ---
 
 # Checkpoint 4: 🚢 Ship it! 🚁
 
-> ✏️ Edit your frontend `App.jsx` in `packages/react-app/src` to change the `targetNetwork` to `NETWORKS.rinkeby`:
+> ✏️ Edit your frontend `App.jsx` in `packages/react-app/src` to change the `targetNetwork` to `NETWORKS.goerli`:
 
-![image](https://user-images.githubusercontent.com/2653167/142491593-a032ebf2-38c7-4d1c-a4c5-5e02485e21b4.png)
+![image](https://user-images.githubusercontent.com/12072395/187535786-25837212-0c49-4403-b9e6-e8a3255bcd16.PNG)
 
 You should see the correct network in the frontend (http://localhost:3000):
 
-![nft10](https://user-images.githubusercontent.com/526558/124387099-9a3edd80-dcb3-11eb-9a57-54a7d370589a.png)
+![nft10](https://user-images.githubusercontent.com/12072395/187537642-11a60aae-2b1d-4c8f-a3fa-65e4ce36830e.PNG)
 
 > 🦊 At this moment, you will need to connect the dapp to a browser wallet where you have some ether available to mint tokens. Again, you can use a faucet like [faucet.paradigm.xyz]. Keep in mind that the address you generated in the previous step to deploy the contract will likely be different from the one you have configured in your wallet.
 
@@ -184,7 +184,9 @@ Update the `api-key` in `packages/hardhat/package.json` file. You can get your k
 
 ![Screen Shot 2021-11-30 at 10 21 01 AM](https://user-images.githubusercontent.com/9419140/144075208-c50b70aa-345f-4e36-81d6-becaa5f74857.png)
 
-> Now you are ready to run the `yarn verify --network your_network` command to verify your contracts on etherscan 🛰
+Now you are ready to run the `yarn verify --network your_network` command to verify your contracts on etherscan 🛰
+
+> It is okay if it says your contract is already verified.  Copy the address of YourCollectable.sol and search it on goerli Etherscan to find the correct URL you need to submit this challenge.
 
 ---
 
@@ -199,16 +201,14 @@ Update the `api-key` in `packages/hardhat/package.json` file. You can get your k
 # ⚔️ Side Quests
 
 ## 🐟 Open Sea
-> Add your contract to OpenSea
-> 1. hover over your profile photo in the top right and navigate to `Collections` or go to `https://opensea.io/collections`
-> ![my_collections](https://user-images.githubusercontent.com/46639943/150223014-92a2e32d-d2a2-4fd4-ac3b-bd2d0fcb5840.png)
-> 2. click the vertical elipsis and select `Import an existing smart contract`
-> ![import_contract](https://user-images.githubusercontent.com/46639943/150225448-815a17c1-4ea6-4663-8aff-8f757bebbb54.png)
-> 3. select `Live on a testnet`
-> ![live_on_testnet](https://user-images.githubusercontent.com/46639943/150229334-038100bb-22e0-4240-a293-c2b88adc1219.png)
-> 4. be sure you're on the same network you deployed to and enter your contract address!
-> ![contract_address](https://user-images.githubusercontent.com/46639943/150229361-e50e8c57-3918-450f-8bee-29cf42d65b52.png)
 
+> 🐃 Want to see your new NFTs on Opensea?  Head to [Testnets Opensea](https://testnets.opensea.io/)
+
+> 🎫 Make sure you have minted some NFTs on your Surge page, then connect to Opensea using that same wallet.
+
+![nft14](https://user-images.githubusercontent.com/12072395/188957491-bb5eeaf9-5b3c-4667-9d75-9f88bc7acc5d.PNG)
+
+> You can see your collection of shiny new NFTs on a testnet!
 
 (It can take a while before they show up, but here is an example:)
 https://testnets.opensea.io/assets/0xc2839329166d3d004aaedb94dde4173651babccf/1

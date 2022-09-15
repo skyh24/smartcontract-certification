@@ -24,34 +24,28 @@ describe("🚩 Challenge 0: 🎟 Simple NFT Example 🤓", function () {
   // console.log("hre:",Object.keys(hre)) // <-- you can access the hardhat runtime env here
 
   describe("YourCollectible", function () {
+
+    let contractArtifact;
     if (process.env.CONTRACT_ADDRESS) {
-      it("Should connect to external contract", async function () {
-        myContract = await ethers.getContractAt(
-          "YourCollectible",
-          process.env.CONTRACT_ADDRESS
-        );
-        console.log(
-          "     🛰 Connected to external contract",
-          myContract.address
-        );
-      });
+      contractArtifact = `contracts/${process.env.CONTRACT_ADDRESS}.sol:YourCollectible`
     } else {
-      it("Should deploy YourCollectible", async function () {
-        const YourCollectible = await ethers.getContractFactory(
-          "YourCollectible"
-        );
-        myContract = await YourCollectible.deploy();
-      });
+      contractArtifact = "contracts/YourCollectible.sol:YourCollectible";
     }
 
-    describe("mintItem()", function () {
+    it("Should deploy the contract", async function () {
+      const YourCollectible = await ethers.getContractFactory(contractArtifact);
+      myContract = await YourCollectible.deploy();
+      console.log("\t"," 🛰  Contract deployed on", myContract.address);
+    });
+
+    describe("🏛  mintItem()", function () {
       it("Should be able to mint an NFT", async function () {
         const [owner] = await ethers.getSigners();
 
-        console.log("\t", " 🧑‍🏫 Tester Address: ", owner.address);
+        console.log("\t", " 🧑 Tester Address: ", owner.address);
 
         const startingBalance = await myContract.balanceOf(owner.address);
-        console.log("\t", " ⚖️ Starting balance: ", startingBalance.toNumber());
+        console.log("\t", " 💵 Starting NFT balance: ", startingBalance.toNumber());
 
         console.log("\t", " 🔨 Minting...");
         const mintResult = await myContract.mintItem(
@@ -60,18 +54,14 @@ describe("🚩 Challenge 0: 🎟 Simple NFT Example 🤓", function () {
         );
         console.log("\t", " 🏷  mint tx: ", mintResult.hash);
 
-        console.log("\t", " ⏳ Waiting for confirmation...");
+        console.log("\t", " ⏳  Waiting for confirmation...");
         const txResult = await mintResult.wait(1);
+        console.log("\t", " 🔃 Mint transaction status:",txResult.status);
         expect(txResult.status).to.equal(1);
 
-        console.log(
-          "\t",
-          " 🔎 Checking new balance: ",
-          startingBalance.toNumber()
-        );
-        expect(await myContract.balanceOf(owner.address)).to.equal(
-          startingBalance.add(1)
-        );
+        const newBalance = await myContract.balanceOf(owner.address);
+        console.log("\t"," 🔎 Checking new NFT balance: ", newBalance.toString());
+        expect(newBalance).to.equal(startingBalance.add(1));
       });
 
       it("Should track tokens of owner by index", async function () {
